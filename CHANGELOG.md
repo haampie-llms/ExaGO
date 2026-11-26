@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgraded to Spack v1+
 - Made spdlog an external dependency and removed `tpl/spdlog` accordingly
 - Deprecated deception, newell and incline build configurations
+- RAJA HIP kernels are compiled with CMake's HIP language, so the C++ compiler does not have to be hipcc
 
 ### PS
 

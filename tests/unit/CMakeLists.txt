@@ -3,6 +3,8 @@ add_subdirectory(ps)
 
 if(EXAGO_ENABLE_RAJA AND EXAGO_ENABLE_CUDA)
   set_source_files_properties(test_acopf.cpp PROPERTIES LANGUAGE CUDA)
+elseif(EXAGO_ENABLE_RAJA AND EXAGO_ENABLE_HIP)
+  set_source_files_properties(test_acopf.cpp PROPERTIES LANGUAGE HIP)
 endif()
 
 add_executable(test_acopf test_acopf.cpp utils/test_acopf_utils.cpp)
