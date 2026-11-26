@@ -212,6 +212,23 @@ endif(EXAGO_ENABLE_CUDA)
 if(EXAGO_ENABLE_HIP)
   set(EXAGO_HAVE_HIP 1)
   add_definitions(-DHAVE_HIP) # For hipmagma
+
+  if(NOT DEFINED CMAKE_HIP_ARCHITECTURES)
+    if(DEFINED GPU_TARGETS)
+      set(CMAKE_HIP_ARCHITECTURES ${GPU_TARGETS})
+    elseif(DEFINED AMDGPU_TARGETS)
+      set(CMAKE_HIP_ARCHITECTURES ${AMDGPU_TARGETS})
+    endif()
+  endif()
+
+  # RAJA and Umpire require C++20 through camp's cxx_std_20 compile feature,
+  # which does not apply to HIP sources
+  if(NOT DEFINED CMAKE_HIP_STANDARD)
+    set(CMAKE_HIP_STANDARD 20)
+    set(CMAKE_HIP_STANDARD_REQUIRED ON)
+  endif()
+
+  enable_language(HIP)
   find_package(hip REQUIRED)
 endif()
 

@@ -42,6 +42,11 @@ if(EXAGO_ENABLE_RAJA AND EXAGO_ENABLE_CUDA)
     model/power_bal_hiop/pbpolrajahiopsparsekernels.cpp PROPERTIES LANGUAGE
                                                                    CUDA
   )
+elseif(EXAGO_ENABLE_RAJA AND EXAGO_ENABLE_HIP)
+  set_source_files_properties(
+    model/power_bal_hiop/pbpolrajahiopkernels.cpp
+    model/power_bal_hiop/pbpolrajahiopsparsekernels.cpp PROPERTIES LANGUAGE HIP
+  )
 endif()
 
 # Header files for opflow
